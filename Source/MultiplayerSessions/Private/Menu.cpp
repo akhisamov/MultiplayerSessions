@@ -67,7 +67,11 @@ void UMenu::MenuSetup(
 {
 	NumPublicConnections = NumberOfPublicConnections;
 	MatchType = TypeOfMatch;
-	LobbyPath = PathToLobby + TEXT("?listen");
+	LobbyPath = PathToLobby;
+	if (!LobbyPath.IsEmpty())
+	{
+		LobbyPath += TEXT("?listen");
+	}
 
 	AddToViewport();
 	SetVisibility(ESlateVisibility::Visible);
@@ -149,7 +153,7 @@ void UMenu::OnCreateSession(bool bWasSuccessful)
 
 void UMenu::OnFindSessions(const TArray<FOnlineSessionSearchResult>& SearchResults, bool bWasSuccessful)
 {
-	if (!TryJoinSession)
+	if (!TryJoinSession(SearchResults, bWasSuccessful))
 	{
 		JoinButton->SetIsEnabled(true);
 	}

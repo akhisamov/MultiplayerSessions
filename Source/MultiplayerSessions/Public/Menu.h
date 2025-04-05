@@ -22,9 +22,9 @@ class MULTIPLAYERSESSIONS_API UMenu : public UUserWidget
 public:
 	UFUNCTION(BlueprintCallable)
 	void MenuSetup(
-		int32 NumberOfPublicConnections = 2,
-		const FString& TypeOfMatch = TEXT("FreeForAll"),
-		const FString& PathToLobby = TEXT("/Game/Maps/Lobby"));
+		int32 NumberOfPublicConnections,
+		const FString& TypeOfMatch,
+		const FString& PathToLobby);
 
 protected:
 	virtual bool Initialize() override;
